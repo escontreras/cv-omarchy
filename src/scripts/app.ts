@@ -53,8 +53,16 @@ function updateActiveButtons(): void {
 
 function updatePanels(): void {
   document.querySelectorAll<HTMLElement>('.cv-panel').forEach((panel) => {
-    const matches = panel.dataset.panel === state.tab && panel.dataset.lang === state.lang;
-    panel.classList.toggle('is-active', matches && state.panelReady);
+    const matches = panel.dataset.panel === state.tab && panel.dataset.lang === state.lang && state.panelReady;
+    if (!matches) {
+      panel.style.display = 'none';
+    } else if (panel.classList.contains('grid')) {
+      panel.style.display = 'grid';
+    } else if (panel.classList.contains('flex')) {
+      panel.style.display = 'flex';
+    } else {
+      panel.style.display = 'block';
+    }
   });
 }
 

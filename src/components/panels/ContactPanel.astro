@@ -9,11 +9,10 @@ interface Props {
 const { d, lang } = Astro.props;
 
 const rows = [
-  { icon: UI.mail, label: 'email', node: 'a', href: `mailto:${CONTACT.email}`, text: CONTACT.email },
-  { icon: UI.link, label: 'linkedin', node: 'a', href: CONTACT.linkedinUrl, text: CONTACT.linkedin, external: true },
-  { icon: UI.phone, label: 'phone', node: 'span', text: CONTACT.phone },
-  { icon: UI.whatsapp, label: 'whatsapp', node: 'a', href: CONTACT.whatsappUrl, text: CONTACT.whatsapp, external: true },
-  { icon: UI.pin, label: 'location', node: 'span', text: CONTACT.location },
+  { icon: UI.mail, label: d.contactLabels.email, node: 'a', href: `mailto:${CONTACT.email}`, text: CONTACT.email, external: false },
+  { icon: UI.link, label: d.contactLabels.linkedin, node: 'a', href: CONTACT.linkedinUrl, text: CONTACT.linkedin, external: true },
+  { icon: UI.whatsapp, label: d.contactLabels.whatsapp, node: 'a', href: CONTACT.whatsappUrl, text: CONTACT.whatsapp, external: true },
+  { icon: UI.pin, label: d.contactLabels.location, node: 'span', text: CONTACT.location, external: false },
 ] as const;
 ---
 

@@ -99,12 +99,11 @@ import CvApp from '../components/CvApp.astro';
     font-weight: 600;
   }
 
-  /* --- Paneles: visibles solo si coinciden idioma (arriba) y pestaña activa --- */
+  /* --- Paneles: visibles solo si coinciden idioma (arriba) y pestaña activa ---
+     El display real (grid/flex/block) lo pone app.ts vía inline style para no
+     pelear en especificidad con las utilidades .grid/.flex de Tailwind. */
   .cv-panel {
     display: none;
-  }
-  .cv-panel.is-active {
-    display: block;
   }
 
   /* --- Estados activos de botones (tabs / workspace switcher) --- */
