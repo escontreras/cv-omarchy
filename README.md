@@ -7,7 +7,7 @@ consola (tecleo del comando + spinner braille), reloj en vivo, toggle de idioma 
 
 ## Requisitos
 
-- **Node.js 22.2.2** (hay un `.nvmrc`: con nvm basta `nvm use`)
+- **Node.js 22.22.2** (hay un `.nvmrc`: con nvm basta `nvm use`)
 - **pnpm 11.1.1** (`corepack enable && corepack prepare pnpm@11.1.1 --activate`)
 
 ## Desarrollo local
@@ -74,7 +74,7 @@ git push -u origin main
 ## Despliegue con GitHub Pages + GitHub Actions
 
 Ya viene incluido el workflow **`.github/workflows/deploy.yml`**, que en cada push a `main`:
-instala pnpm 11.1.1 → usa Node 22.2.2 → `pnpm install` → `pnpm build` → publica `dist/` en Pages.
+instala pnpm 11.1.1 → usa Node 22.22.2 → `pnpm install` → `pnpm build` → publica `dist/` en Pages.
 
 Pasos para activarlo (una sola vez):
 
@@ -88,6 +88,7 @@ Pasos para activarlo (una sola vez):
 > reproducibles.
 
 ### Alternativa — Vercel o Netlify (cero configuración)
+
 Conecta el repositorio en [vercel.com](https://vercel.com) o [netlify.com](https://netlify.com).
 Detectan Astro automáticamente (build: `pnpm build`, salida: `dist/`). Con estas plataformas puedes
 borrar `base` de `astro.config.mjs`.
