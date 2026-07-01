@@ -9,7 +9,7 @@ interface Props {
 const { d, lang } = Astro.props;
 ---
 
-<div data-panel="skills" data-lang={lang} class="cv-panel grid grid-cols-[repeat(auto-fit,minmax(min(260px,100%),1fr))] gap-[22px]">
+<div data-panel="skills" data-lang={lang} class="cv-panel grid grid-cols-1 gap-[22px] sm:grid-cols-2">
   {d.skillGroups.map((g) => (
     <div>
       <div class="flex items-center gap-[7px] mb-[10px] text-[13px] font-semibold text-nord-8">
