@@ -1,0 +1,21 @@
+{
+  "name": "edgar-contreras-portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "CV / portafolio web con estética Omarchy (tema Nord) construido con Astro",
+  "engines": {
+    "node": ">=22.2.2",
+    "pnpm": ">=11.1.1"
+  },
+  "packageManager": "pnpm@11.1.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.15.0"
+  }
+}
