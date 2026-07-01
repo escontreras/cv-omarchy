@@ -71,4 +71,101 @@ import { CONTACT } from '../data/cv';
   ::-webkit-scrollbar-thumb:hover {
     background: #4c566a;
   }
+
+  /* --- Responsive: móvil (base) / tablet (≥641px) / web (≥1025px) --- */
+  html {
+    overflow-x: hidden;
+  }
+  .topbar {
+    flex-wrap: wrap;
+    row-gap: 6px;
+    padding: 8px 12px;
+  }
+  .topbar-icons,
+  .topbar-status {
+    display: none;
+  }
+  .terminal-shell {
+    margin: 18px 10px 40px;
+    border-radius: 10px;
+  }
+  .term-body {
+    padding: 18px 16px 22px;
+  }
+  .profile-row {
+    gap: 16px;
+  }
+  .profile-info {
+    min-width: 0;
+  }
+  .ascii-art {
+    display: none;
+  }
+  .profile-name {
+    font-size: 19px;
+  }
+  .tabs-row {
+    gap: 6px;
+  }
+  .tab-btn {
+    font-size: 12px !important;
+    padding: 5px 10px !important;
+  }
+  .cmd-line {
+    font-size: 12.5px;
+  }
+
+  @media (min-width: 641px) {
+    .topbar {
+      flex-wrap: nowrap;
+      padding: 8px 16px;
+    }
+    .topbar-icons,
+    .topbar-status {
+      display: inline-flex;
+    }
+    .terminal-shell {
+      margin: 26px 16px 48px;
+      border-radius: 12px;
+    }
+    .term-body {
+      padding: 22px 24px 28px;
+    }
+    .profile-info {
+      min-width: 260px;
+    }
+    .ascii-art {
+      display: block;
+    }
+    .profile-name {
+      font-size: 21px;
+    }
+    .tab-btn {
+      font-size: 12.5px !important;
+      padding: 6px 12px !important;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .terminal-shell {
+      margin: 34px 18px 56px;
+      border-radius: 14px;
+    }
+    .term-body {
+      padding: 26px 30px 32px;
+    }
+    .profile-info {
+      min-width: 300px;
+    }
+    .profile-name {
+      font-size: 23px;
+    }
+    .tab-btn {
+      font-size: 13px !important;
+      padding: 6px 14px !important;
+    }
+    .cmd-line {
+      font-size: 13.5px;
+    }
+  }
 </style>

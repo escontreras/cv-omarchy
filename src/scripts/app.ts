@@ -100,7 +100,7 @@ function panelSkills(d: typeof CV['es']): string {
       </div>`
     )
     .join('');
-  return `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px">${groups}</div>`;
+  return `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:22px">${groups}</div>`;
 }
 
 function panelExp(d: typeof CV['es']): string {
@@ -186,13 +186,13 @@ function render(): void {
 
   const tabIcons: Record<string, string> = { resumen: UI.resumen, skills: UI.skills, exp: UI.exp, edu: UI.edu, contact: UI.contact };
   const tabBtnBase =
-    'display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-size:13px;border-radius:8px;padding:6px 14px;cursor:pointer;transition:filter .15s;';
+    'display:inline-flex;align-items:center;gap:7px;font-family:inherit;border-radius:8px;cursor:pointer;transition:filter .15s;';
   const tabsHtml = TABS.map((t) => {
     const active = t.id === tab;
     const st = tabBtnBase + (active
       ? 'background:#88c0d0;color:#2e3440;border:1px solid #88c0d0;font-weight:600;'
       : 'background:transparent;color:#81a1c1;border:1px solid #434c5e;');
-    return `<button data-action="tab:${t.id}" style="${st}">${tabIcons[t.id]}${esc(t[lang])}</button>`;
+    return `<button data-action="tab:${t.id}" class="tab-btn" style="${st}">${tabIcons[t.id]}${esc(t[lang])}</button>`;
   }).join('');
 
   const wsBase =
@@ -213,7 +213,7 @@ function render(): void {
   app.innerHTML = `
   <div style="min-height:100vh;width:100%;background:radial-gradient(120% 90% at 28% -10%,#3b4252 0%,#2e3440 52%,#272c36 100%);display:flex;flex-direction:column;align-items:center">
 
-    <div style="position:sticky;top:0;z-index:20;width:100%;display:flex;align-items:center;gap:12px;padding:8px 16px;background:rgba(46,52,64,.72);backdrop-filter:blur(10px);border-bottom:1px solid #3b4252;font-size:12.5px;color:#d8dee9">
+    <div class="topbar" style="position:sticky;top:0;z-index:20;width:100%;display:flex;align-items:center;gap:12px;background:rgba(46,52,64,.72);backdrop-filter:blur(10px);border-bottom:1px solid #3b4252;font-size:12.5px;color:#d8dee9">
       <div style="display:flex;align-items:center;gap:8px;font-weight:600;color:#88c0d0"><span style="font-size:14px">❄</span><span style="letter-spacing:.04em">omarchy</span></div>
       <div style="display:flex;align-items:center;gap:6px;margin-left:4px">${wsHtml}</div>
       <div style="flex:1"></div>
@@ -222,12 +222,12 @@ function render(): void {
       <button data-action="lang" style="display:inline-flex;align-items:center;gap:6px;background:#3b4252;border:1px solid #434c5e;border-radius:999px;padding:3px 10px;color:#d8dee9;font-family:inherit;font-size:12px;cursor:pointer">
         <span style="${lang === 'es' ? on : off}">ES</span><span style="color:#4c566a">/</span><span style="${lang === 'en' ? on : off}">EN</span>
       </button>
-      <span style="display:inline-flex;align-items:center;gap:6px;color:#a3be8c"><span style="width:7px;height:7px;border-radius:50%;background:#a3be8c;display:inline-block"></span>${lang === 'es' ? 'ES · nativo' : 'EN · B1'}</span>
-      <span style="display:inline-flex;align-items:center;gap:11px;color:#81a1c1">${UI.wifi}${UI.vol}${UI.batt}</span>
+      <span class="topbar-status" style="align-items:center;gap:6px;color:#a3be8c"><span style="width:7px;height:7px;border-radius:50%;background:#a3be8c;display:inline-block"></span>${lang === 'es' ? 'ES · nativo' : 'EN · B1'}</span>
+      <span class="topbar-icons" style="align-items:center;gap:11px;color:#81a1c1">${UI.wifi}${UI.vol}${UI.batt}</span>
       <span style="color:#ebcb8b;min-width:70px;text-align:right">${state.clock}</span>
     </div>
 
-    <div style="width:100%;max-width:1000px;margin:34px 18px 56px;background:#2e3440;border:1px solid #434c5e;border-radius:14px;box-shadow:0 30px 80px -24px rgba(0,0,0,.6),0 0 0 1px rgba(136,192,208,.05);overflow:hidden">
+    <div class="terminal-shell" style="width:100%;max-width:1000px;background:#2e3440;border:1px solid #434c5e;box-shadow:0 30px 80px -24px rgba(0,0,0,.6),0 0 0 1px rgba(136,192,208,.05);overflow:hidden">
 
       <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;background:#3b4252;border-bottom:1px solid #434c5e">
         <div style="display:flex;gap:8px">
@@ -238,18 +238,18 @@ function render(): void {
         <div style="flex:1;text-align:center;font-size:12.5px;color:#81a1c1">edgar@omarchy: ~/cv — fish</div>
       </div>
 
-      <div style="padding:26px 30px 32px">
+      <div class="term-body">
 
-        <div style="display:flex;flex-wrap:wrap;gap:30px;align-items:flex-start;padding-bottom:22px;border-bottom:1px dashed #434c5e">
-          <pre style="margin:0;color:#88c0d0;font-size:12.5px;line-height:1.5;font-weight:600;opacity:.9">  ❄ ❄ ❄
+        <div class="profile-row" style="display:flex;flex-wrap:wrap;align-items:flex-start;padding-bottom:22px;border-bottom:1px dashed #434c5e">
+          <pre class="ascii-art" style="margin:0;color:#88c0d0;font-size:12.5px;line-height:1.5;font-weight:600;opacity:.9">  ❄ ❄ ❄
 ╓─────────╖
 ║  E · C  ║
 ║ ~/dev   ║
 ╙─────────╜</pre>
-          <div style="flex:1;min-width:300px;display:flex;flex-direction:column;gap:15px">
+          <div class="profile-info" style="flex:1;display:flex;flex-direction:column;gap:15px">
             <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px">
               <div style="flex:1;min-width:210px">
-                <div style="color:#eceff4;font-weight:600;font-size:23px;letter-spacing:.01em">${CONTACT.name}</div>
+                <div class="profile-name" style="color:#eceff4;font-weight:600;letter-spacing:.01em">${CONTACT.name}</div>
                 <div style="color:#81a1c1;font-size:13.5px;margin-top:4px">${esc(d.role)} · ${esc(d.exp)}</div>
               </div>
               <div style="display:inline-flex;align-items:center;gap:9px;background:rgba(163,190,140,.12);border:1px solid rgba(163,190,140,.42);color:#a3be8c;font-size:12.5px;border-radius:999px;padding:6px 13px">
@@ -268,9 +268,9 @@ function render(): void {
           </div>
         </div>
 
-        <div style="display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 18px">${tabsHtml}</div>
+        <div class="tabs-row" style="display:flex;flex-wrap:wrap;margin:22px 0 18px">${tabsHtml}</div>
 
-        <div style="font-size:13.5px;margin-bottom:16px">
+        <div class="cmd-line" style="margin-bottom:16px">
           <span style="color:#a3be8c">edgar</span><span style="color:#616e88">@</span><span style="color:#81a1c1">omarchy</span><span style="color:#616e88"> ~/cv </span><span style="color:#b48ead">❯</span> <span style="color:#e5e9f0">${esc(state.displayCmd)}</span><span style="display:inline-block;width:8px;height:15px;background:#88c0d0;vertical-align:-2px;margin-left:3px;animation:blink 1.1s steps(1) infinite"></span>
         </div>
 
