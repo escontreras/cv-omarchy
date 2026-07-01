@@ -1,0 +1,32 @@
+---
+import type { LangData, Lang } from '../../data/cv';
+
+interface Props {
+  d: LangData;
+  lang: Lang;
+}
+const { d, lang } = Astro.props;
+---
+
+<div data-panel="exp" data-lang={lang} class="cv-panel flex flex-col gap-[26px] border-l-2 border-nord-2 pl-[22px]">
+  {d.jobs.map((job) => (
+    <div class="relative">
+      <span class="absolute -left-[29px] top-[5px] h-[11px] w-[11px] rounded-full border-2 border-nord-8 bg-nord-0" />
+      <div class="flex flex-wrap items-baseline gap-[8px]">
+        <span class="text-[15px] font-semibold text-nord-8">{job.role}</span>
+        <span class="text-nord-9">@ {job.company}</span>
+        <span class="flex-1" />
+        <span class="text-[12.5px] text-nord-13">{job.dates}</span>
+      </div>
+      <div class="mb-[10px] mt-[2px] text-[12.5px] text-nord-muted">{job.location}</div>
+      <div class="flex flex-col gap-[7px]">
+        {job.bullets.map((b) => (
+          <div class="flex max-w-[760px] gap-[10px] [text-wrap:pretty]">
+            <span class="text-nord-15">›</span>
+            <span>{b}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>

@@ -1,5 +1,6 @@
 ---
 import { CONTACT } from '../data/cv';
+import CvApp from '../components/CvApp.astro';
 ---
 
 <!doctype html>
@@ -19,9 +20,17 @@ import { CONTACT } from '../data/cv';
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script is:inline>
+      try {
+        var saved = localStorage.getItem('cv_lang');
+        document.documentElement.dataset.lang = saved === 'en' ? 'en' : 'es';
+      } catch (e) {
+        document.documentElement.dataset.lang = 'es';
+      }
+    </script>
   </head>
   <body>
-    <div id="app"></div>
+    <CvApp />
     <script>
       import '../scripts/app.ts';
     </script>
@@ -70,6 +79,51 @@ import { CONTACT } from '../data/cv';
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #4c566a;
+  }
+
+  /* --- i18n: se muestra solo el bloque que coincide con html[data-lang] --- */
+  html:not([data-lang='en']) [data-i18n='en'] {
+    display: none;
+  }
+  html[data-lang='en'] [data-i18n='es'] {
+    display: none;
+  }
+  html:not([data-lang='en']) [data-lang-flag='en'],
+  html[data-lang='en'] [data-lang-flag='es'] {
+    color: #4c566a;
+    font-weight: 400;
+  }
+  html:not([data-lang='en']) [data-lang-flag='es'],
+  html[data-lang='en'] [data-lang-flag='en'] {
+    color: #88c0d0;
+    font-weight: 600;
+  }
+
+  /* --- Paneles: visibles solo si coinciden idioma (arriba) y pestaña activa --- */
+  .cv-panel {
+    display: none;
+  }
+  .cv-panel.is-active {
+    display: block;
+  }
+
+  /* --- Estados activos de botones (tabs / workspace switcher) --- */
+  .tab-btn {
+    background: transparent;
+    color: #81a1c1;
+    border-color: #434c5e;
+  }
+  .tab-btn.is-active {
+    background: #88c0d0;
+    color: #2e3440;
+    border-color: #88c0d0;
+    font-weight: 600;
+  }
+  .tab-switch-btn.is-active {
+    background: #88c0d0;
+    color: #2e3440;
+    border-color: #88c0d0;
+    font-weight: 600;
   }
 
   /* --- Responsive: móvil (base) / tablet (≥641px) / web (≥1025px) --- */

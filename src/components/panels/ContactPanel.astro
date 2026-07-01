@@ -1,0 +1,42 @@
+---
+import { CONTACT, type LangData, type Lang } from '../../data/cv';
+import { UI } from '../../lib/icons';
+
+interface Props {
+  d: LangData;
+  lang: Lang;
+}
+const { d, lang } = Astro.props;
+
+const rows = [
+  { icon: UI.mail, label: 'email', node: 'a', href: `mailto:${CONTACT.email}`, text: CONTACT.email },
+  { icon: UI.link, label: 'linkedin', node: 'a', href: CONTACT.linkedinUrl, text: CONTACT.linkedin, external: true },
+  { icon: UI.phone, label: 'phone', node: 'span', text: CONTACT.phone },
+  { icon: UI.whatsapp, label: 'whatsapp', node: 'a', href: CONTACT.whatsappUrl, text: CONTACT.whatsapp, external: true },
+  { icon: UI.pin, label: 'location', node: 'span', text: CONTACT.location },
+] as const;
+---
+
+<div data-panel="contact" data-lang={lang} class="cv-panel flex max-w-[620px] flex-col gap-[14px]">
+  {rows.map((row) => (
+    <div class="flex items-baseline gap-[12px]">
+      <span class="inline-flex min-w-[92px] items-center gap-[8px] text-nord-15">
+        <Fragment set:html={row.icon} />
+        {row.label}
+      </span>
+      {row.node === 'a' ? (
+        <a href={row.href} target={row.external ? '_blank' : undefined} rel={row.external ? 'noopener' : undefined} class="text-nord-7 no-underline">{row.text}</a>
+      ) : (
+        <span class="text-nord-4">{row.text}</span>
+      )}
+    </div>
+  ))}
+  <a
+    href={CONTACT.cvFile}
+    download
+    class="mt-[12px] inline-flex w-fit items-center gap-[10px] rounded-[9px] bg-nord-8 px-[18px] py-[10px] text-[13.5px] font-semibold text-nord-0 no-underline"
+  >
+    <Fragment set:html={UI.downloadBig} />
+    <span>{d.downloadLabel}</span>
+  </a>
+</div>

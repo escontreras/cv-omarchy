@@ -1,0 +1,51 @@
+---
+import { CONTACT, CV } from '../data/cv';
+import { UI } from '../lib/icons';
+---
+
+<div class="profile-row flex flex-wrap items-start border-b border-dashed border-nord-2 pb-[22px]">
+  <pre class="ascii-art m-0 text-[12.5px] font-semibold leading-[1.5] text-nord-8 opacity-90">  ❄ ❄ ❄
+╓─────────╖
+║  E · C  ║
+║ ~/dev   ║
+╙─────────╜</pre>
+
+  <div class="profile-info flex flex-1 flex-col gap-[15px]">
+    <div class="flex flex-wrap items-center gap-[14px]">
+      <div class="min-w-[210px] flex-1">
+        <div class="profile-name font-semibold tracking-[.01em] text-nord-6">{CONTACT.name}</div>
+        <div class="mt-[4px] text-[13.5px] text-nord-9">
+          <span data-i18n="es">{CV.es.role} · {CV.es.exp}</span>
+          <span data-i18n="en">{CV.en.role} · {CV.en.exp}</span>
+        </div>
+      </div>
+      <div class="inline-flex items-center gap-[9px] rounded-full border border-nord-14/40 bg-nord-14/[.12] px-[13px] py-[6px] text-[12.5px] text-nord-14">
+        <span class="h-[8px] w-[8px] rounded-full bg-nord-14 shadow-[0_0_0_3px_rgba(163,190,140,.22)]"></span>
+        <span data-i18n="es">Disponible para proyectos</span>
+        <span data-i18n="en">Available for work</span>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-[20px] text-[12.5px] text-nord-faint">
+      <span class="inline-flex items-center gap-[7px]">
+        <Fragment set:html={UI.pin} />
+        {CV.es.loc}
+      </span>
+    </div>
+
+    <div class="flex flex-wrap gap-[9px]">
+      <a href={CONTACT.linkedinUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-[8px] rounded-[8px] border border-nord-2 px-[13px] py-[7px] text-[12.5px] text-nord-8 no-underline">
+        <Fragment set:html={UI.link} />LinkedIn
+      </a>
+      <a href={`mailto:${CONTACT.email}`} class="inline-flex items-center gap-[8px] rounded-[8px] border border-nord-2 px-[13px] py-[7px] text-[12.5px] text-nord-8 no-underline">
+        <Fragment set:html={UI.mail} />Email
+      </a>
+      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-[8px] rounded-[8px] border border-nord-2 px-[13px] py-[7px] text-[12.5px] text-nord-8 no-underline">
+        <Fragment set:html={UI.whatsapp} />WhatsApp
+      </a>
+      <a href={CONTACT.cvFile} download class="inline-flex items-center gap-[8px] rounded-[8px] border border-nord-2 px-[13px] py-[7px] text-[12.5px] text-nord-8 no-underline">
+        <Fragment set:html={UI.download} />CV.pdf
+      </a>
+    </div>
+  </div>
+</div>

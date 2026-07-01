@@ -1,0 +1,39 @@
+---
+import type { LangData, Lang } from '../../data/cv';
+import { UI } from '../../lib/icons';
+
+interface Props {
+  d: LangData;
+  lang: Lang;
+}
+const { d, lang } = Astro.props;
+---
+
+<div data-panel="edu" data-lang={lang} class="cv-panel flex flex-col gap-[22px]">
+  <div class="max-w-[620px] rounded-[10px] border border-nord-2 bg-nord-1 px-[18px] py-[16px]">
+    <div class="text-[15px] font-semibold text-nord-8">{d.edu.degree}</div>
+    <div class="mt-[3px] text-nord-5">{d.edu.school}</div>
+    <div class="mt-[4px] text-[12.5px] text-nord-muted">{d.edu.location} · {d.edu.dates}</div>
+  </div>
+  <div>
+    <div class="mb-[10px] flex items-center gap-[7px] text-[13px] font-semibold text-nord-8">
+      <Fragment set:html={UI.award} />
+      {d.certsLabel}
+    </div>
+    <div class="flex flex-col gap-[7px]">
+      {d.certs.map((ct) => (
+        <div class="flex gap-[10px]">
+          <span class="text-nord-14">✓</span>
+          <span>{ct}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div>
+    <div class="mb-[8px] flex items-center gap-[7px] text-[13px] font-semibold text-nord-8">
+      <Fragment set:html={UI.globe} />
+      {d.langsLabel}
+    </div>
+    <div class="text-nord-4">{d.langsLine}</div>
+  </div>
+</div>

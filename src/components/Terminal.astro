@@ -1,0 +1,41 @@
+---
+import { CV } from '../data/cv';
+import ProfileHeader from './ProfileHeader.astro';
+import TabsNav from './TabsNav.astro';
+import CommandLine from './CommandLine.astro';
+import ResumenPanel from './panels/ResumenPanel.astro';
+import SkillsPanel from './panels/SkillsPanel.astro';
+import ExperiencePanel from './panels/ExperiencePanel.astro';
+import EducationPanel from './panels/EducationPanel.astro';
+import ContactPanel from './panels/ContactPanel.astro';
+---
+
+<div class="terminal-shell w-full max-w-[1000px] overflow-hidden border border-nord-2 bg-nord-0 shadow-[0_30px_80px_-24px_rgba(0,0,0,.6),0_0_0_1px_rgba(136,192,208,.05)]">
+
+  <div class="flex items-center gap-[12px] border-b border-nord-2 bg-nord-1 px-[14px] py-[11px]">
+    <div class="flex gap-[8px]">
+      <span class="h-[12px] w-[12px] rounded-full bg-nord-11"></span>
+      <span class="h-[12px] w-[12px] rounded-full bg-nord-13"></span>
+      <span class="h-[12px] w-[12px] rounded-full bg-nord-14"></span>
+    </div>
+    <div class="flex-1 text-center text-[12.5px] text-nord-9">edgar@omarchy: ~/cv — fish</div>
+  </div>
+
+  <div class="term-body">
+    <ProfileHeader />
+    <TabsNav />
+    <CommandLine />
+
+    <div class="min-h-[280px] text-[14px] leading-[1.7] text-nord-4">
+      {(['es', 'en'] as const).map((lang) => (
+        <>
+          <ResumenPanel d={CV[lang]} lang={lang} />
+          <SkillsPanel d={CV[lang]} lang={lang} />
+          <ExperiencePanel d={CV[lang]} lang={lang} />
+          <EducationPanel d={CV[lang]} lang={lang} />
+          <ContactPanel d={CV[lang]} lang={lang} />
+        </>
+      ))}
+    </div>
+  </div>
+</div>

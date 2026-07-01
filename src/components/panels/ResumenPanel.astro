@@ -1,0 +1,13 @@
+---
+import type { LangData, Lang } from '../../data/cv';
+
+interface Props {
+  d: LangData;
+  lang: Lang;
+}
+const { d, lang } = Astro.props;
+---
+
+<div data-panel="resumen" data-lang={lang} class="cv-panel border-l-2 border-nord-10 py-1 pl-[18px] max-w-[760px] [text-wrap:pretty]">
+  {d.resumen}
+</div>

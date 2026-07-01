@@ -1,0 +1,29 @@
+---
+import type { LangData, Lang } from '../../data/cv';
+import { UI, skillIcon } from '../../lib/icons';
+
+interface Props {
+  d: LangData;
+  lang: Lang;
+}
+const { d, lang } = Astro.props;
+---
+
+<div data-panel="skills" data-lang={lang} class="cv-panel grid grid-cols-[repeat(auto-fit,minmax(min(260px,100%),1fr))] gap-[22px]">
+  {d.skillGroups.map((g) => (
+    <div>
+      <div class="flex items-center gap-[7px] mb-[10px] text-[13px] font-semibold text-nord-8">
+        <Fragment set:html={UI.code} />
+        {g.label}
+      </div>
+      <div class="flex flex-wrap gap-[7px]">
+        {g.items.map((it) => (
+          <span class="inline-flex items-center gap-[7px] rounded-[7px] border border-nord-2 bg-nord-1 px-[11px] py-[5px] text-[12.5px] text-nord-4">
+            <span class="text-nord-9"><Fragment set:html={skillIcon(it)} /></span>
+            {it}
+          </span>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>

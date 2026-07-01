@@ -1,0 +1,26 @@
+---
+import { TABS } from '../data/cv';
+import { UI } from '../lib/icons';
+
+const tabIcons: Record<string, string> = {
+  resumen: UI.resumen,
+  skills: UI.skills,
+  exp: UI.exp,
+  edu: UI.edu,
+  contact: UI.contact,
+};
+---
+
+<div class="tabs-row my-[18px] flex flex-wrap">
+  {TABS.map((t) => (
+    <button
+      type="button"
+      data-tab-btn={t.id}
+      class="tab-btn inline-flex items-center gap-[7px] rounded-[8px] border font-mono text-[13px] transition-[filter] duration-150"
+    >
+      <Fragment set:html={tabIcons[t.id]} />
+      <span data-i18n="es">{t.es}</span>
+      <span data-i18n="en">{t.en}</span>
+    </button>
+  ))}
+</div>
